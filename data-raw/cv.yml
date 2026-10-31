@@ -10,6 +10,9 @@ person:
   title: "Assistant Professor"
   department: "School of Criminal Justice and Criminology"
   university: "Texas State University"
+  # What the left sidebar shows under your name. Leave blank to use
+  # "department, university" instead.
+  institution_display: "Texas State University"
   email: ""             # public academic address, shown in the footer. Leave blank to hide.
   avatar: "images/headshot.jpeg"   # file in public/, for example "images/headshot.jpg"
   # One or two sentences shown in the left sidebar under your name.

@@ -34,7 +34,13 @@ write_markdown(
     name = person$name,
     avatar = person$avatar,
     shortBio = person$short_bio,
-    institution = paste(person$department, person$university, sep = ", ")
+    # institution_display wins when set, so the sidebar can read shorter than
+    # the full department name. Falls back to department, university.
+    institution = if (!is_blank(person$institution_display)) {
+      person$institution_display
+    } else {
+      paste(person$department, person$university, sep = ", ")
+    }
   ),
   body = person$summary
 )
