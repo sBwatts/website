@@ -50,6 +50,8 @@ jobs:
             any::stringr
             any::tibble
             any::httr2
+            # httr2 needs jsonlite at runtime for resp_body_json()
+            any::jsonlite
 
       - name: Run the pipeline
         # Optional: set a CROSSREF_MAILTO repo secret to use Crossref's faster

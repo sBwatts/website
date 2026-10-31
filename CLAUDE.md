@@ -10,7 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Regenerate content from the R pipeline, run from the project root (the `.here` file marks the root):
   - `Rscript R/update_all.R` runs everything
   - `Rscript R/update_publications.R`, `R/update_projects.R`, or `R/update_cv.R` runs one part
-- R 4.4 or newer. Packages: here, yaml, readr, dplyr, purrr, stringr, tibble, httr2.
+- R 4.4 or newer. Packages: here, yaml, readr, dplyr, purrr, stringr, tibble, httr2, jsonlite (httr2 needs it for `resp_body_json()`).
 
 ## Architecture
 
