@@ -19,7 +19,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   // Full address of the live site. Replace with your domain once DNS is set up.
-  site: 'https://sethbwatts.com',
+  site: 'https://www.sethbwatts.com',
   // Only needed for a project repo (username.github.io/repo-name). Leave commented out
   // for username.github.io or a custom domain.
   // base: '/repo-name',
