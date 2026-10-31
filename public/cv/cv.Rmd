@@ -1,0 +1,235 @@
+---
+output: stevetemplates::cv
+geometry: margin=1in
+
+title: "CV"
+author: Seth Watts, PhD
+
+jobtitle: "Assistant Professor, Criminal Justice & Criminology"
+address: "Texas State University · San Marcos, TX"
+fontawesome: yes
+email: sbwatts@txstate.edu
+github: sbwatts
+# twitter: stevenvmiller
+#osf: "Enter 5 digit osf string here"
+#phone: "+353 1 408 4800"
+web: sethbwatts.com
+updated: TRUE
+rdateformat: "`r format(Sys.time(), '%d %b %Y')`"
+
+keywords: R Markdown, academic CV, template
+
+header-includes:
+  - \PassOptionsToPackage{dvipsnames}{xcolor}
+  # - \definecolor{txst}{HTML}{501214}
+  
+fontfamily: mathpazo
+fontfamilyoptions: sc, osf
+fontsize: 11pt
+# linkcolor: txst
+# urlcolor: txst
+---
+
+```{r install-scholar, include=FALSE}
+if (!requireNamespace("scholar", quietly = TRUE)) install.packages("scholar")
+```
+
+```{r scholar-stats, include=FALSE}
+library(scholar)
+scholar_id <- "_zgKKS0AAAAJ"
+profile <- tryCatch(
+  get_profile(scholar_id),
+  error = function(e) NULL
+)
+gs_cites  <- if (!is.null(profile)) profile$total_cites else "N/A"
+gs_hindex <- if (!is.null(profile)) profile$h_index     else "N/A"
+gs_i10    <- if (!is.null(profile)) profile$i10_index   else "N/A"
+```
+
+# Education
+
+*Arizona State University*
+
+PhD, Criminology and Criminal Justice \hfill 2024
+
+MS, Criminology and Criminal Justice \hfill 2021
+
+\vspace{1.0em}
+
+*Bowling Green State University*
+
+BA, Psychology \hfill 2019
+
+# Academic Positions
+
+Assistant Professor \| Texas State University \hfill 2025-
+
+## Academic Affiliations
+
+Research Affiliate, [Texas Crime and Justice Center (TCJC)](https://www.cj.txst.edu/research/centers-labs/tcjc.html) \| Texas State University \hfill 2025-
+
+## Previous Positions
+
+Postdoctoral Researcher \| Arizona State University \hfill 2024-2025
+
+Graduate Research Assistant \| Arizona State University \hfill 2020-2024
+
+# Work in Progress
+
+Tanksley, P., Martaindale, M. H., Watts, S., Padilla, K., Violanti, M. J., Barnes, JC, Moffit, E. T., & Caspi, A. Deaths of Despair among Protective Service Occupations in the United States: Evidence from a nation-wide study.
+
+Watts, S., White, D, M., & Malm, A. Officer Perceptions of AI-Based Performance Evaluation: A Latent Class Analysis of Attitudinal Profiles Before and After Deployment.
+
+Watts, S. When and Where do Police Administer Naloxone First at an Opioid Overdose? Evidence from Tempe, Arizona.
+
+# Publications
+
+[Google Scholar Profile](https://scholar.google.com/citations?user=_zgKKS0AAAAJ&hl=en&oi=ao): total citations = `r gs_cites`, h-index = `r gs_hindex`, i10-index = `r gs_i10`
+
+## Peer-Reviewed Journal Articles
+
+14\.  White, M. D., **Watts, S**., & Malm, A. (2026). Does AI Generate a Civilizing or De-Policing Effect? Testing the Impact of AI-Based Body Worn Camera Analytics in a Large State Police Agency. *Crime Science*.
+
+13\.  White, M. D., **Watts, S**., & Malm, A. (2026). AI, Body-Worn Cameras, and a Potential Civilizing Effect for Officers: Evidence from the Arizona Truleo Study. *Criminology and Public Policy*. [(DOI)](https://doi.org/10.1111/1745-9133.70018)
+
+12\.  **Watts, S.**, del Pozo, B., White, M. D., & Malm, A. (2025) Implementation Science Natural Experiment: Does Automated Feedback Impact Officers’ Perceptions? *Journal of Experimental Criminology*. [(DOI)](https://doi.org/10.1007/s11292-025-09711-7)
+
+11\.  White, M. D., **Watts, S.**, Malm, A., & Navarrete, G. B. (2025). Officer Acceptance and Use of AI-Driven Body-Worn Camera Footage Review. *American Journal of Criminal Justice*. [(Pre-print)](https://doi.org/10.21428/cb6ab371.291631e5) [(DOI)](https://doi.org/10.1007/s12103-025-09857-0)
+
+10\.  White, M. D., Orosco, C., & **Watts, S**. (2025) Beyond Force and Injuries: Examining Alternative (and Important) Outcomes for Police De-escalation Training. *Journal of Criminal Justice*, 89, 102129. ([DOI](https://www-sciencedirect-com.ezproxy1.lib.asu.edu/science/article/pii/S0047235223001009?casa_token=OxErc72pD-QAAAAA:XATyRNg9im-Y4tSAmatE2RofJft49bpMx7c4_fOCiLyqIILE_rMDU03IA2yVHSmdepnLIrpzNfw))
+
+9\.  Brown, K., **Watts, S**., Turner, P., & Wallace, D. (2025). How Does Proximity to Service Providers Impact Punitivity in Stop Outcomes for Individuals Experiencing Homelessness? *Journal of Crime and Justice*, 1-19. ([DOI](https://doi-org.ezproxy1.lib.asu.edu/10.1080/0735648X.2024.2375371))
+
+8\.  **Watts, S**., White, M. D., Malm, A., & Perrone, D. (2024). Who is Fatigued? Examining Officer Attitudes Towards People Who Use Opioids, Naloxone, and Their Role in Responding to Opioid Overdoses. *Journal of Criminal Justice*, 95, 102308. [(DOI)](https://doi.org/10.1016/j.jcrimjus.2024.102308)
+
+7\.  **Watts, S**., White, M. D., & Malm, A. (2024). Automating Body-Worn Camera Footage Review through AI: Preliminary Findings from a Multi-Site Randomized Control Trial. *Policing: A Journal of Policy and Practice*, 18, paae107. [(Pre-print)](https://www.crimrxiv.com/pub/8xm0r2jv/release/1) [(DOI)](https://doi.org/10.1093/police/paae107)
+
+6\.  White, M. D., Monk, K., & **Watts, S**. (2023). A Half-Century Investigation of Police Officer Line-of-Duty Deaths: Putting Recent Trends in Long-Term Context. *Police Practice and Research*, 1-18. ([DOI](https://www-tandfonline-com.ezproxy1.lib.asu.edu/doi/abs/10.1080/15614263.2023.2267728))
+
+5\. White, M. D., Orosco, C., & **Watts, S**. (2023). Can De-escalation Training Reduce Use of Force and Citizen Injury Without Compromising Officer Safety? *Journal of Experimental Criminology*, 1-26. ([DOI](https://link-springer-com.ezproxy1.lib.asu.edu/article/10.1007/s11292-023-09584-8))
+
+4\. White, M. D., **Watts, S**., Orosco, C., Malm, A., & Perrone, D. (2022). Leveraging Body-Worn Camera Footage to Better Understand Opioid Overdoses and the Impact of Police-Led Naloxone Programs. *American Journal of Public Health*, *112*(9), 1326-1332. ([DOI](https://ajph.aphapublications.org/doi/abs/10.2105/AJPH.2022.306918))
+
+3\. Gaub, J., White, M. D., Malm, A., **Watts, S**., & Brown, K. (2022). Investigation the Role and Utility of Body-Worn Cameras at the “George Floyd” Protests. *Policing: An International Journal*, *45*(4), 633-647. ([DOI](https://www.emerald.com/insight/content/doi/10.1108/PIJPSM-10-2021-0151/full/html))
+
+2\. White, M. D., Perrone, D., & **Watts, S**., & Malm, A. (2021). Moving Beyond Narcan: A Police, Social Service, and Researcher Collaborative Response to the Opioid Crisis. *American Journal of Criminal Justice*, *46*(4), 626-643. ([DOI](https://link-springer-com.ezproxy1.lib.asu.edu/article/10.1007/s12103-021-09625-w))
+
+1\. White, M. D., Malm, A., Perrone, D., & **Watts, S**. (2021). Narcan Cops: Officer Perceptions of Opioid Use and Willingness to Carry Naloxone. *Journal of Criminal Justice*, 72, 101778. ([DOI](https://www-sciencedirect-com.ezproxy1.lib.asu.edu/science/article/pii/S0047235220302725?casa_token=M3KzLm4DIoUAAAAA:KhQQ6E6WpFcNQdyfTN33-SRHRPttqc81ijlWaNX0wOOYu3TiHBIa17DzDZS2_7K_vU9_CQwdAaA))
+
+## Book Chapters
+
+2\.  **Watts, S**., Orosco, C., & White, M. D. (*Forthcoming*). De-escalation Training: A Comparative Review of Tempe, ICAT, T3, and BSI. In Alpert, G., Adams, I. T., and Mclean, D. K. (Eds.), *Critical Issues in Policing*. [(Pre-print)](https://www.crimrxiv.com/pub/69g05cuu/release/1)
+
+1\.  **Watts, S**., White, M. D., & Malm, A. (*Forthcoming 2026*). AI in Policing: Capturing Police Performance (Good and Bad) in Routine, Rare, and Novel Events. In Huey, L., Ferguson, L. and Adams, I.T. (Eds.), *Future Policing: Technology and Transformation*. Taylor & Francis/Routledge. [(Pre-print)](https://www.crimrxiv.com/pub/k4k0rpp1/release/1) [(DOI)](https://www.routledge.com/Future-Policing-Technology-and-Transformation/Huey-Ferguson-Adams/p/book/9781041137481)
+
+## Research Briefs & Technical Reports
+
+3\.  Orosco, C., White, M. D., & **Watts, S**. Can de-escalation training reduce use of force and injuries to citizens without risking officer safety? *Applied Police Briefings*. ([PDF](https://appliedpolicebriefings.com/index.php/APB/article/view/4996/3702))
+
+2\.  **Watts, S**., White, M. D., Malm, A., Orosco, C., & Perrone, D. Understanding Police Involvement at Opioid Overdose Incidents Through Body-Worn Camera Footage. *Applied Police Briefings*. ([PDF](https://appliedpolicebriefings.com/index.php/APB/article/view/5019/3605))
+
+1\.  White, M. D., Orosco, C., & **Watts, S**. More than Use of Force: Examining Alternative Outcomes for Police De-escalation. *Applied Police Briefings*. ([PDF](https://appliedpolicebriefings.com/index.php/APB/article/view/5010/3597))
+
+# Grant Activity
+
+Michael D. White (PI), Aili Malm (Co-PI), Seth Watts (Co-PI). (*Under review*). "Leveraging AI for Officer Health and Wellness: The Arizona Department of Public Safety "Pre-habilitative Indication System" *Arnold Ventures*. \$525,000
+
+Peter Tanksley (PI), Seth Watts (Co-PI), Hunter Martaindale (Co-I). (*Under Review*). "Substance use involvement in law enforcement officer mortality: an investigation of national death certificate data" *National Institute on Drug Abuse, National Institutes of Health (R01)*. \$505,783
+
+# Media
+
+Sun, A. (April 23, 2026) How Effective Is Police De-Escalation Training? *Association for Psychological Science*. ([Link](https://nam04.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.psychologicalscience.org%2Fpublications%2Fobserver%2Fpolice-deescalation-training.html&data=05%7C02%7Csbwatts%40txstate.edu%7C4be8d03e0d554d45a2bd08dea224e3ce%7Cb19c134a14c94d4caf65c420f94c8cbb%7C0%7C0%7C639126476499174890%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=cJVQGiB03KRn8WqHxbzUu99WHKwAcAW%2FYKnLTSVmQRI%3D&reserved=0))
+
+Salsgiver, J. (January 20, 2026) SMPD trains eligible officers in mental health. *University Star*. ([Link](https://universitystar.com/34222/news/smpd-trains-eligible-officers-in-mental-health/))
+
+Salsgiver, J. (January 9, 2026). San Marcos sees decline in fentanyl overdoses. *University Star*. ([Link](https://universitystar.com/34152/news/san-marcos-sees-decline-in-fentanyl-overdoses/))
+
+Goacher, D. (February 8, 2024). Tempe City Council Funds Project Addressing Opioid Overdose Response, Counseling. *Arizona State Press*. ([Link](https://www.statepress.com/article/2024/02/tempe-first-responder-opioid))
+
+Watts, S. (September 16, 2022). Research Backs Police Response To Drug Overdoses. *Crime and Justice News*. ([Link](https://www.ncja.org/crimeandjusticenews/research-backs-police-response-to-drug-overdoses))
+
+White D. M., Perrone, D., Malm, A., & Watts, S. (September 16, 2021). The Tempe First-Responder Opioid Recovery Project. *Public Health Post*. ([Link](https://www.publichealthpost.org/research/tempe-opioid-recovery/))
+
+## Conference Presentations[^1]
+
+[^1]: Presented by coauthor ($P$)
+
+Watts, S., White, M. D., & Malm, A. (November, 2025). Can AI-Driven Body-Worn Camera Review Improve Police Officer Professionalism? Findings from Three Randomized Control Trials in Arizona. *American Society of Criminology*. *Sponsored by the Division of Experimental Criminology*.
+
+Watts, S., White, M. D., & Malm, A. (April, 2025). Perceptions, Use, and Impact of Truleo in Three Arizona Law Enforcement Agencies. *American Society of Evidence-Based Policing*.
+
+Abrica, C., White, M. D., Malm, A., & Watts, S. (February, 2025). A process evaluation of AI-driven body-worn camera review: Assessing officer perceptions pre and post. *Western Society of Criminology conference*.$^P$
+
+Watts, S., White, M. D., & Malm, A. (November, 2024). How do Officers Perceive AI-based BWC Review Technology? Evidence from 6 Months of Survey Data. *American Society of Criminology*. *Sponsored by the division of Policing*.
+
+White, M. D., Malm, A., & Watts, S. (November, 2024). Automating Body-Worn Camera Footage Review Through AI: Preliminary Findings from a Multi-Site Randomized Control Trial. American Society of Criminology. *Sponsored by the division of Experimental Criminology*.$^P$
+
+Watts, S. & White, M. D. (November, 2024). Collaborative Post-Overdose Outreach Efforts to Engage Homeless Individuals. *American Society of Criminology*.
+
+White, M. D. & Watts, S. (June, 2024). Exploring the Drivers of Resistance to Police-Led Naloxone Programs. *American Society of Evidence-Based Policing*.
+
+Gutierrez, S., Mathis, S., Sanuth, A., Watts, S., & Wallace, D. (February, 2024). Is Law-Violating Driving Behavior Race Specific? Mapping Rates of At-Fault Traffic Accidents by Race. *Western Society of Criminology*.$^P$
+
+Watts, S., White, M. D., Malm, A., & Perrone, D. (November, 2023). The Durability of Police Officers’ Attitudes about Naloxone and Opioid Overdose Response: ‘Narcan Cops’ Revisited. *American Society of Criminology*.
+
+Watts, S., White, M. D., Malm, A., & Perrone, D. (November, 2022). The Tempe First Responder Opioid Recovery Project. *American Society of Criminology*.
+
+White, M. D., Watts, S., Orosco, C., Malm, A., & Perrone, D (March, 2022). Myth busting Police-Led Naloxone Programs with Body-Worn Camera Footage. *Academy of Criminal Justice Sciences*.
+
+White, M. D., Orosco, C. A., Watts, S., Malm, A., & Perrone, D (2020). The Tempe First Responder Opioid Recovery Project. *Southern Criminal Justice Association*.$^P$
+
+## Other Presentations
+
+Watts, S. Investigating the Intersection of Policing, Opioids, and Place. (February, 2026). *Interdisciplinary Policing Research Workshop*
+
+Watts, S. Repeatability, Reproducibility, and Replicability: Developing Transparent and Efficient Workflows. (November, 2025). *Texas State University CJ "brown bag" series*.
+
+White, M. D., Watts, S., & Malm, A. (March, 2025). Perceptions, use, and impact of Truleo in three Arizona law enforcement agencies. *Truleo’s AI Innovation Day*.$^P$
+
+White, M. D. & Watts, S. (January, 2024). Making the Invisible Visible: Body-Worn Cameras as a Tool for Uncovering Bad (and Good) Policing. *ASU CCJ Colloquium Series*.
+
+# Teaching Experience
+
+*Texas State University*
+
+**In-person**
+
+CJ: 2310 Police Systems and Practices \hfill Fall '26
+
+CJ: 4310 Special Problems in the Criminal Justice System  \hfill Fall '26, Spring '26
+
+**Online**
+
+CJ: 4310 Special Problems in the Criminal Justice System \hfill Summer '26, Fall '25
+
+*Arizona State University*
+
+**Online**
+
+Police Accountability (2024); Crime Control Policies (2023); Statistical Analyses (2023); Introduction to Criminal Justice (2022); Research Methods (2022)
+
+# Awards
+
+American Society of Criminology, Division of Policing Outstanding Dissertation Award \hfill 2025
+
+# Activities and Service
+
+## Guest Lectures and Workshops
+
+"[Graphics in Stata](https://github.com/sBwatts/figure-making-stata)," workshop at Arizona State University. September 20, 2024.
+
+"[Table-making in Stata](https://github.com/sBwatts/table-making-stata)," workshop at Arizona State University. April 12, 2024.
+
+## Manuscript Reviews
+
+*Criminal Justice & Behavior*, *Criminology & Public Policy*, *Evidence Base*, *Health and Justice*, *Journal of Drug Issues*, *Journal of Experimental Criminology*, *Journal of Harm Reduction*, *Justice Quarterly*, *Police Practice & Research: An International Journal*, *Policing: A Journal of Policy & Practice*, *Policing: An International Journal*, *Public Management Review*
+
+# Professional Affiliations
+
+American Society of Evidence-Based Policing
+
+American Society of Criminology
+
+# References
+
+Available upon request.

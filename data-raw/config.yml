@@ -1,0 +1,56 @@
+# Settings for the R data scripts.
+# Personal details shown on the site (name, bio, education, etc.) live in cv.yml.
+
+publications:
+  # Your ORCID iD. Crossref is searched for works linked to it.
+  # Leave blank to skip the ORCID lookup and use only the DOI list and the manual CSV.
+  orcid: "0000-0002-5108-9055"
+
+  # Your DOIs. Each one is fetched from Crossref, so works that Crossref doesn't link
+  # to your ORCID are still included. Preprints are dropped automatically when a
+  # journal or book version of the same title is present.
+  dois:
+    # Verified through co-authors White, Malm, Orosco, Perrone, Brown, and Gaub
+    - "10.1007/s12103-025-09857-0"  # Officer acceptance and use of AI-driven BWC review
+    - "10.1186/s40163-026-00293-x"  # Does AI generate a civilizing or de-policing effect?
+    - "10.4324/9781003671312-14"  # AI in Policing (Routledge)
+    - "10.1111/1745-9133.70018"  # AI, body-worn cameras, and a potential civilizing effect
+    - "10.1007/s11292-025-09711-7"  # Does automated feedback impact acceptability of AI-generated BWC
+    - "10.1080/0735648x.2024.2375371"  # Proximity to service providers and punitivity
+    - "10.1108/pijpsm-10-2021-0151"  # Prevalence and utility of police body-worn cameras (Georgia)
+    - "10.1093/police/paae107"  # Automating BWC footage review through AI: baseline attitudes
+    - "10.22215/apb.v1i2.5010"  # More than use of force (Applied Police Briefings)
+    - "10.22215/apb.v1i2.5019"  # Understanding police involvement at opioid overdose incidents
+    - "10.22215/apb.v2i1.4996"  # Can de-escalation training reduce use of force and injuries
+    - "10.1007/s11292-023-09584-8"  # Can police de-escalation training reduce use of force
+    - "10.1016/j.jcrimjus.2023.102129"  # Beyond force and injuries: alternative outcomes
+    - "10.1080/15614263.2023.2267728"  # Half-century investigation of police line-of-duty deaths
+    - "10.1016/j.jcrimjus.2020.101778"  # Narcan cops: officer perceptions of opioid use
+    - "10.1007/s12103-021-09625-w"  # Moving beyond Narcan (police, social service, researcher collaboration)
+    - "10.1016/j.jcrimjus.2024.102308"  # Who is fatigued? Officer attitudes toward PWUOs and naloxone
+    - "10.2105/ajph.2022.306918"  # Leveraging BWC footage to understand opioid overdose response
+    - "10.21428/cb6ab371.c691ef98"  # AI in policing: capturing police performance (CrimRxiv)
+    - "10.21428/cb6ab371.d88be0db"  # Comparative review of de-escalation training (CrimRxiv)
+    - "10.21428/cb6ab371.67a771e2"  # Officer perceptions of AI-based performance evaluation (CrimRxiv)
+    - "10.21428/cb6ab371.45f5258f"  # Evaluation of Truleo's AI-based BWC analytics (CrimRxiv)
+
+  # CrimRxiv preprints of journal articles that stay listed as Preprints. The journal
+  # version is listed under Publications as well.
+  preprint_dois:
+    - "10.21428/cb6ab371.291631e5"  # Officer Acceptance and Use of AI-Driven BWC Review
+    - "10.21428/cb6ab371.dd9645dd"  # Automating BWC Footage Review Through AI
+
+  # Journal articles that have a CrimRxiv preprint. The journal entry gets a "Preprint" link.
+  preprint_pairs:
+    - journal: "10.1007/s12103-025-09857-0"  # Officer Acceptance and Use of AI-Driven BWC Review
+      preprint: "10.21428/cb6ab371.291631e5"
+    - journal: "10.1093/police/paae107"  # Automating BWC Footage Review Through AI
+      preprint: "10.21428/cb6ab371.dd9645dd"
+
+  # DOIs to hide even if Crossref lists them. These are Lawrence Livermore works by a
+  # different Seth Watts that OpenAlex had linked to your ORCID.
+  exclude_dois:
+    # CrimRxiv post-print of a journal article (posted after publication, not a preprint)
+    - "10.21428/cb6ab371.844981c9"
+    - "10.2172/1771031"
+    - "10.1557/s43577-026-01114-x"

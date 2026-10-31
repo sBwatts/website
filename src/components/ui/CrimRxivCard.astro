@@ -1,0 +1,17 @@
+---
+// Orange "CrimRxiv" card, used for CrimRxiv preprints and links to them.
+interface Props {
+    href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-flex items-center rounded-md border border-transparent bg-[#f0722a] px-2 py-0.5 text-[0.6rem] font-bold uppercase tracking-wider text-white no-underline transition-opacity hover:opacity-90"
+>
+    CrimRxiv
+</a>

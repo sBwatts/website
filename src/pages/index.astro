@@ -1,0 +1,59 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { PAGES } from "../config";
+
+// Load bio content
+const bioEntry = await getEntry("bio", "bio");
+const { Content: BioContent } = bioEntry
+	? await render(bioEntry)
+	: { Content: null };
+
+// Three most recent entries, publications and preprints together.
+// Read at build time, so the section updates whenever the publications are regenerated.
+const featured = (await getCollection("publications"))
+	.sort((a, b) => {
+		const dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
+		const dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
+		return dateB - dateA;
+	})
+	.slice(0, 3);
+---
+
+<BaseLayout title={PAGES.home.title}>
+	<div class="container-narrow">
+		{
+			(PAGES.home.title || PAGES.home.subtitle) && (
+				<header class="page-header">
+					{PAGES.home.title && (
+						<h1 class="page-title">{PAGES.home.title}</h1>
+					)}
+					{PAGES.home.subtitle && (
+						<p class="page-subtitle">{PAGES.home.subtitle}</p>
+					)}
+				</header>
+			)
+		}
+		<div class="prose">
+			{BioContent ? <BioContent /> : <p>Loading bio...</p>}
+		</div>
+
+		{
+			featured.length > 0 && (
+				<section class="section mt-12">
+					<h2 class="section-title border-b border-border pb-2">Recent work</h2>
+					<ul class="m-0 p-0 list-none space-y-1 text-sm">
+						{featured.map((entry) => (
+							<li class="mb-0">
+								<a href={`/publications/${entry.id}`} class="font-semibold">{entry.data.title}</a>
+								<span class="text-text-muted">
+									{" · "}{entry.data.journal ?? entry.data.category}{entry.data.date && `, ${entry.data.date}`}
+								</span>
+							</li>
+						))}
+					</ul>
+				</section>
+			)
+		}
+	</div>
+</BaseLayout>

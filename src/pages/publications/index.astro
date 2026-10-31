@@ -1,0 +1,169 @@
+---
+// Publications page with All / Publications / Preprints / Reports and Briefings tabs and a search box.
+// Each entry's category comes from the "category" field the R script writes.
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseItemCard from "../../components/ui/BaseItemCard.astro";
+import { getListingItem } from "../../utils/adapters";
+import { PAGES } from "../../config";
+
+if (PAGES.publications.isActive === false) {
+    return Astro.redirect("/404");
+}
+
+// Newest first, using the same date sort as the other listing pages
+const entries = (await getCollection("publications")).sort((a, b) => {
+    const dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
+    const dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
+    return dateB - dateA;
+});
+
+// Text the search box matches against: title, authors, journal, year, and badge type
+const searchText = (entry: (typeof entries)[number]) =>
+    [entry.data.title, entry.data.author, entry.data.journal, entry.data.date, entry.data.type]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+// Tabs after "All". Each one is hidden when it has no entries.
+const categories = [
+    { id: "publications", label: "Publications", category: "Publication" },
+    { id: "preprints", label: "Preprints", category: "Preprint" },
+    { id: "reports", label: "Reports and Briefings", category: "Reports and Briefings" },
+].map((tab) => ({
+    ...tab,
+    entries: entries.filter((e) => (e.data.category ?? "Publication") === tab.category),
+}));
+const visibleCategories = categories.filter((tab) => tab.entries.length > 0);
+---
+
+<BaseLayout title={PAGES.publications.title} description={PAGES.publications.subtitle}>
+    <header class="page-header">
+        <h1 class="page-title">{PAGES.publications.title}</h1>
+        <p class="page-subtitle">{PAGES.publications.subtitle}</p>
+    </header>
+
+    <div class="mb-4">
+        <input
+            type="search"
+            id="publication-search"
+            placeholder="Search title, author, journal, or year"
+            aria-label="Search publications"
+            class="w-full sm:max-w-md rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground placeholder:text-text-muted focus-visible:outline-accent"
+        />
+        <p data-search-status class="mt-2 text-xs text-text-muted" aria-live="polite"></p>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-6" role="group" aria-label="Filter publications">
+        <button
+            type="button"
+            data-filter="all"
+            aria-pressed="true"
+            class="btn btn-sm aria-pressed:bg-accent aria-pressed:border-accent aria-pressed:text-background"
+        >
+            All <span class="ml-1 tabular-nums opacity-75">{entries.length}</span>
+        </button>
+        {
+            visibleCategories.map((tab) => (
+                <button
+                    type="button"
+                    data-filter={tab.id}
+                    aria-pressed="false"
+                    class="btn btn-sm aria-pressed:bg-accent aria-pressed:border-accent aria-pressed:text-background"
+                >
+                    {tab.label} <span class="ml-1 tabular-nums opacity-75">{tab.entries.length}</span>
+                </button>
+            ))
+        }
+    </div>
+
+    <div class="container-narrow">
+        {entries.length === 0 && <p>No publications yet.</p>}
+
+        {
+            visibleCategories.map((tab) => (
+                <section data-filter-section={tab.id} class="section">
+                    <h2 class="section-title border-b border-border pb-2">{tab.label}</h2>
+                    <section class="item-list publication-list">
+                        {tab.entries.map((entry) => (
+                            <div data-search-item data-search={searchText(entry)}>
+                                <BaseItemCard
+                                    {...getListingItem(entry)}
+                                    href={`/publications/${entry.id}`}
+                                    badge={entry.data.type}
+                                    abstract={entry.data.abstract}
+                                    openAccess={entry.data.open_access}
+                                    preprintUrl={entry.data.preprint_url}
+                                    doi={entry.data.external_url?.replace("https://doi.org/", "")}
+                                    crimrxiv={entry.data.category === "Preprint"}
+                                />
+                            </div>
+                        ))}
+                    </section>
+                </section>
+            ))
+        }
+    </div>
+</BaseLayout>
+
+<script>
+    // Tabs show one category at a time (or all). The search box hides entries that don't
+    // match every word typed. Both work together, and empty sections are hidden.
+    // The tab choice is kept in the URL (for example ?filter=preprints) so a link can be shared.
+    function setupPublicationPage() {
+        const buttons = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
+        const sections = document.querySelectorAll<HTMLElement>("[data-filter-section]");
+        const items = document.querySelectorAll<HTMLElement>("[data-search-item]");
+        const search = document.querySelector<HTMLInputElement>("#publication-search");
+        const status = document.querySelector<HTMLElement>("[data-search-status]");
+        const valid = new Set(Array.from(buttons, (b) => b.dataset.filter));
+
+        let activeTab = "all";
+
+        function applyFilters() {
+            const words = (search?.value ?? "").toLowerCase().trim().split(/\s+/).filter(Boolean);
+
+            // Show an entry only if its text contains every word typed
+            items.forEach((item) => {
+                const text = item.dataset.search ?? "";
+                item.hidden = !words.every((w) => text.includes(w));
+            });
+
+            // A section shows only when its tab is active and it still has a visible entry
+            let matches = 0;
+            sections.forEach((section) => {
+                const visibleHere = Array.from(section.querySelectorAll<HTMLElement>("[data-search-item]")).filter((i) => !i.hidden).length;
+                matches += visibleHere;
+                const tabMatches = activeTab === "all" || section.dataset.filterSection === activeTab;
+                section.hidden = !tabMatches || visibleHere === 0;
+            });
+
+            if (status) {
+                status.textContent = words.length > 0 ? `${matches} matching ${matches === 1 ? "entry" : "entries"}` : "";
+            }
+        }
+
+        function applyTab(filter: string) {
+            activeTab = filter;
+            buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.filter === filter)));
+
+            const url = new URL(window.location.href);
+            if (filter === "all") {
+                url.searchParams.delete("filter");
+            } else {
+                url.searchParams.set("filter", filter);
+            }
+            history.replaceState(null, "", url);
+            applyFilters();
+        }
+
+        buttons.forEach((b) => b.addEventListener("click", () => applyTab(b.dataset.filter!)));
+        search?.addEventListener("input", applyFilters);
+
+        const requested = new URLSearchParams(window.location.search).get("filter");
+        applyTab(requested && valid.has(requested) ? requested : "all");
+    }
+
+    // Astro's view transitions re-run page scripts on navigation, so set up on each page load
+    document.addEventListener("astro:page-load", setupPublicationPage);
+</script>

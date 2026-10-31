@@ -1,0 +1,130 @@
+---
+import Tag from "./Tag.astro";
+import Icon from "./Icon.astro";
+import CrimRxivCard from "./CrimRxivCard.astro";
+
+interface Props {
+    title: string;
+    href: string;
+    description?: string;
+    date?: string;
+    authors?: string;
+    extraInput?: string;
+    tags?: string[];
+    externalUrl?: string;
+    badge?: string;
+    abstract?: string;
+    openAccess?: boolean;
+    preprintUrl?: string;
+    // Publications only: show the DOI in a card instead of a "View" link
+    doi?: string;
+    // Preprints only: show the link as a CrimRxiv card
+    crimrxiv?: boolean;
+}
+
+const { title, href, description, date, authors, extraInput, tags, externalUrl, badge, abstract, openAccess, preprintUrl, doi, crimrxiv } = Astro.props;
+---
+
+<article class="card">
+    <div class="card-content">
+        {
+            (badge || openAccess) && (
+                <div class="flex flex-wrap items-center gap-2 mb-2">
+                    {badge && (
+                        <span class="inline-flex items-center rounded-full border border-accent/40 bg-accent/10 px-2.5 py-0.5 text-[0.7rem] font-semibold uppercase tracking-wider text-accent">
+                            {badge}
+                        </span>
+                    )}
+                    {openAccess && (
+                        <span class="inline-flex items-center gap-1 rounded-full border border-emerald-600/40 bg-emerald-600/10 px-2.5 py-0.5 text-[0.7rem] font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+                            Open access
+                        </span>
+                    )}
+                </div>
+            )
+        }
+
+        <div class="publication-title">
+            <a href={href} class="card-title !mb-0">{title}</a>
+            {externalUrl && crimrxiv && <CrimRxivCard href={externalUrl} />}
+            {
+                externalUrl && !crimrxiv && doi && (
+                    <a href={externalUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md border border-accent/40 bg-accent/10 px-2 py-0.5 text-[0.6rem] font-bold uppercase tracking-wider text-accent no-underline transition-colors hover:bg-accent/20">
+                        DOI
+                    </a>
+                )
+            }
+            {
+                externalUrl && !crimrxiv && !doi && (
+                    <a href={externalUrl} target="_blank" rel="noopener noreferrer" class="card-link">
+                        View
+                    </a>
+                )
+            }
+            {preprintUrl && <CrimRxivCard href={preprintUrl} />}
+        </div>
+
+        <div class="card-meta">
+            {date && (
+                <span class="flex items-center gap-1">
+                    <Icon name="Calendar" size={24} />
+                    <span>{date}</span>
+                </span>
+            )}
+            {authors && (
+                <span class="flex items-center gap-1">
+                    <Icon name="User" size={24} />
+                    <span>{authors}</span>
+                </span>
+            )}
+            {extraInput && (
+                <span class="flex items-center gap-1">
+                    <Icon name="Institution" size={24} />
+                    <span>{extraInput}</span>
+                </span>
+            )}
+        </div>
+
+        {
+            tags && tags.length > 0 && (
+                <div class="flex gap-2 flex-wrap mb-3">
+                    {tags.map((tag) => (
+                        <Tag name={tag} size="sm" />
+                    ))}
+                </div>
+            )
+        }
+
+        {description && <p class="card-desc">{description}</p>}
+
+        {
+            abstract && (
+                <div class="mt-2">
+                    <button type="button" class="abstract-toggle cursor-pointer text-sm font-semibold text-accent" aria-expanded="false">
+                        Abstract
+                    </button>
+                    <p class="abstract-body mt-2 text-sm leading-relaxed opacity-85 border-l-2 border-accent/50 pl-3" hidden>
+                        {abstract}
+                    </p>
+                </div>
+            )
+        }
+    </div>
+</article>
+
+<script>
+    // Expands and collapses a card's abstract. One listener handles every card on the page.
+    // The guard stops a second listener from being added after an Astro page navigation.
+    if (!(window as any).__abstractToggleBound) {
+        (window as any).__abstractToggleBound = true;
+        document.addEventListener("click", (event) => {
+            const toggle = (event.target as HTMLElement).closest<HTMLButtonElement>(".abstract-toggle");
+            if (!toggle) return;
+            const body = toggle.parentElement?.querySelector<HTMLElement>(".abstract-body");
+            if (!body) return;
+            const open = toggle.getAttribute("aria-expanded") !== "true";
+            toggle.setAttribute("aria-expanded", String(open));
+            body.hidden = !open;
+        });
+    }
+</script>
