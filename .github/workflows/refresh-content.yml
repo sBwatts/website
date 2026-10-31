@@ -38,6 +38,8 @@ jobs:
           # Serves precompiled Linux binaries, which avoids long source builds
           use-public-rspm: true
 
+      # jsonlite is a soft dependency of httr2, needed by resp_body_json().
+      # Entries in packages: are parsed as package refs, so no comments inside the list.
       - name: Install R packages
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
@@ -50,7 +52,6 @@ jobs:
             any::stringr
             any::tibble
             any::httr2
-            # httr2 needs jsonlite at runtime for resp_body_json()
             any::jsonlite
 
       - name: Run the pipeline
