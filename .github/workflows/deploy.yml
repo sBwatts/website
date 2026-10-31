@@ -10,6 +10,11 @@ permissions:
   pages: write
   id-token: write
 
+# Shared with refresh-content.yml so two runs never deploy Pages at the same time.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest

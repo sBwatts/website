@@ -13,11 +13,11 @@ person:
   email: ""             # public academic address, shown in the footer. Leave blank to hide.
   avatar: "images/headshot.jpeg"   # file in public/, for example "images/headshot.jpg"
   # One or two sentences shown in the left sidebar under your name.
-  short_bio: "Add a one or two sentence description here."
+  short_bio: "I study policing, technology, and public health."
   # Paragraphs shown on the About page. Separate paragraphs with a blank line.
   summary: |
-    Add a few paragraphs describing your research interests, methods, and current work.
-  pdf_url: "public/cv/cv.pdf"           # for example "/cv.pdf" (place the file in public/). Leave blank to hide.
+    I am an assistant professor in the [School of Criminal Justice and Criminology](https://www.cj.txst.edu/) at Texas State University. I study all things policing with a focus on technological innovation and involvement in public health issues (e.g. opioid overdoses).
+  pdf_url: "/cv/cv.pdf"                 # for example "/cv.pdf" (place the file in public/). Leave blank to hide.
 
 experience:
   - role: "Assistant Professor"
